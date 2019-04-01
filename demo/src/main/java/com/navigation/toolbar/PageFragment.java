@@ -1,20 +1,18 @@
 package com.navigation.toolbar;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import com.navigation.BaseFragment;
 import com.navigation.R;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import me.listenzz.navigation.FragmentHelper;
@@ -50,24 +48,66 @@ public class PageFragment extends BaseFragment {
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(adapter);
+
         adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(int position, View view) {
 
             }
         });
+
+        dataAsyncTask = new DataAsyncTask();
+        dataAsyncTaskListener = new DataAsyncTask.DataAsyncTaskListener() {
+            @Override
+            public void onResult(List<String> items) {
+                adapter.setData(items);
+            }
+        };
+        dataAsyncTask.setListener(dataAsyncTaskListener);
+        Bundle args = FragmentHelper.getArguments(PageFragment.this);
+        String title = args.getString(ARG_TITLE);
+        dataAsyncTask.execute(title);
     }
 
+    DataAsyncTask dataAsyncTask;
+    DataAsyncTask.DataAsyncTaskListener dataAsyncTaskListener;
+
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        Bundle args = FragmentHelper.getArguments(this);
-        String title = args.getString(ARG_TITLE);
-        List<String> items = new ArrayList<>();
-        for (int i = 0; i < 20; i++) {
-            items.add(title);
+    public void onDestroyView() {
+        super.onDestroyView();
+        dataAsyncTask.setListener(null);
+        dataAsyncTask.cancel(true);
+    }
+
+    static class DataAsyncTask extends AsyncTask<String, Void, List<String>> {
+
+        interface DataAsyncTaskListener {
+            void onResult(List<String> items);
         }
-        adapter.setData(items);
+
+        DataAsyncTaskListener listener;
+
+        public void setListener(DataAsyncTaskListener listener) {
+            this.listener = listener;
+        }
+
+        @Override
+        protected List<String> doInBackground(String... strings) {
+            List<String> items = new ArrayList<>();
+            for (int i = 0; i < 20; i++) {
+                items.add(strings[0]);
+            }
+            return items;
+        }
+
+        @Override
+        protected void onPostExecute(List<String> strings) {
+            super.onPostExecute(strings);
+            if (listener != null) {
+                listener.onResult(strings);
+            }
+        }
+
     }
 
     static class PageAdapter extends RecyclerView.Adapter<PageAdapter.MyViewHolder> {

@@ -1,6 +1,5 @@
 package com.navigation.toolbar;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,13 +12,12 @@ import com.navigation.R;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
+import me.listenzz.navigation.AwesomeFragment;
 import me.listenzz.navigation.AwesomeToolbar;
-import me.listenzz.navigation.BarStyle;
 import me.listenzz.navigation.Style;
 
 
@@ -38,17 +36,11 @@ public class ViewPagerFragment extends BaseFragment {
         return true;
     }
 
+    @Nullable
     @Override
-    protected int preferredStatusBarColor() {
-        int[] colors = new int[] {Color.RED, Color.GREEN, Color.BLUE};
-        return colors[location];
-    }
-
-    @NonNull
-    @Override
-    protected BarStyle preferredStatusBarStyle() {
-        BarStyle[] barStyles = new BarStyle[] { BarStyle.LightContent, BarStyle.DarkContent, BarStyle.LightContent};
-        return barStyles[location];
+    protected AwesomeFragment childFragmentForAppearance() {
+        // 可以重写这个方法来指定由那个子 Fragment 来决定系统 UI（状态栏）的样式，否则由容器本身决定
+        return super.childFragmentForAppearance();
     }
 
     @Override
@@ -85,11 +77,11 @@ public class ViewPagerFragment extends BaseFragment {
         TabLayout tabLayout =  view.findViewById(R.id.tab_layout);
         ViewPager viewPager =  view.findViewById(R.id.view_pager);
 
-        tabLayout.addTab(tabLayout.newTab().setText("One"));
-        tabLayout.addTab(tabLayout.newTab().setText("Tow"));
-        tabLayout.addTab(tabLayout.newTab().setText("Three"));
+        tabLayout.addTab(tabLayout.newTab().setText("Android"));
+        tabLayout.addTab(tabLayout.newTab().setText("Awesome"));
+        tabLayout.addTab(tabLayout.newTab().setText("Navigation"));
 
-        viewPager.setAdapter(new ViewPagerAdapter(getChildFragmentManager(), "One", "Tow", "Three"));
+        viewPager.setAdapter(new ViewPagerAdapter(getChildFragmentManager(), "Android", "Awesome", "Navigation"));
         viewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener(){
             @Override
             public void onPageSelected(int position) {

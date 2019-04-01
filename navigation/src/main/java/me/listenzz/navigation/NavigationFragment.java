@@ -112,7 +112,7 @@ public class NavigationFragment extends AwesomeFragment implements SwipeBackLayo
             public void run() {
                 pushFragmentInternal(fragment, animated);
             }
-        }, true);
+        }, animated);
     }
 
     private void pushFragmentInternal(AwesomeFragment fragment, boolean animated) {
@@ -129,7 +129,7 @@ public class NavigationFragment extends AwesomeFragment implements SwipeBackLayo
             public void run() {
                 popToFragmentInternal(fragment, animated);
             }
-        }, true);
+        }, animated);
     }
 
     private void popToFragmentInternal(AwesomeFragment fragment, boolean animated) {
@@ -159,7 +159,7 @@ public class NavigationFragment extends AwesomeFragment implements SwipeBackLayo
             public void run() {
                 popFragmentInternal(animated);
             }
-        }, true);
+        }, animated);
     }
 
     private void popFragmentInternal(boolean animated) {
@@ -190,7 +190,7 @@ public class NavigationFragment extends AwesomeFragment implements SwipeBackLayo
             public void run() {
                 popToRootFragmentInternal(animated);
             }
-        }, true);
+        }, animated);
     }
 
     private void popToRootFragmentInternal(boolean animated) {

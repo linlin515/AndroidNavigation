@@ -2,11 +2,11 @@ package com.navigation;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.navigation.statusbar.TestStatusBarFragment;
 
+import androidx.annotation.NonNull;
 import me.listenzz.navigation.AppUtils;
 import me.listenzz.navigation.AwesomeActivity;
 import me.listenzz.navigation.DrawerFragment;

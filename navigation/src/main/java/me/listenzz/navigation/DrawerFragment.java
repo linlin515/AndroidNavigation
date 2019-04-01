@@ -2,15 +2,16 @@ package me.listenzz.navigation;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.widget.DrawerLayout;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentManager;
 
 /**
  * Created by Listen on 2018/1/11.
@@ -240,13 +241,13 @@ public class DrawerFragment extends AwesomeFragment implements DrawerLayout.Draw
 
     public void openMenu() {
         if (drawerLayout != null) {
-            drawerLayout.openDrawer(Gravity.START);
+            drawerLayout.openDrawer(GravityCompat.START);
         }
     }
 
     public void closeMenu() {
         if (drawerLayout != null) {
-            drawerLayout.closeDrawer(Gravity.START);
+            drawerLayout.closeDrawer(GravityCompat.START);
         }
     }
 
@@ -275,7 +276,7 @@ public class DrawerFragment extends AwesomeFragment implements DrawerLayout.Draw
 
     public boolean isMenuOpened() {
         if (drawerLayout != null) {
-            return drawerLayout.isDrawerOpen(Gravity.START);
+            return drawerLayout.isDrawerOpen(GravityCompat.START);
         }
         return false;
     }

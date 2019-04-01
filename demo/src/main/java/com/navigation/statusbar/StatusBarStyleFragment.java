@@ -2,10 +2,10 @@ package com.navigation.statusbar;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.view.View;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import me.listenzz.navigation.BarStyle;
 import me.listenzz.navigation.Style;
 import me.listenzz.navigation.ToolbarButtonItem;

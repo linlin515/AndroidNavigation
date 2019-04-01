@@ -1,6 +1,6 @@
 package me.listenzz.navigation;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 /**
  * Created by Listen on 2018/1/11.

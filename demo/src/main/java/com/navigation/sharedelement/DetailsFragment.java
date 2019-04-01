@@ -1,9 +1,6 @@
 package com.navigation.sharedelement;
 
 import android.os.Bundle;
-import android.support.annotation.IntRange;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +9,9 @@ import android.widget.ImageView;
 import com.navigation.BaseFragment;
 import com.navigation.R;
 
+import androidx.annotation.IntRange;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import me.listenzz.navigation.FragmentHelper;
 
 

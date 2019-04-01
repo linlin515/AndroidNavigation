@@ -15,9 +15,10 @@ import android.graphics.Point;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.support.annotation.ColorInt;
-import android.support.annotation.NonNull;
-import android.support.v4.view.ViewCompat;
+
+import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
+import androidx.core.view.ViewCompat;
 import android.util.TypedValue;
 import android.view.DisplayCutout;
 import android.view.Gravity;

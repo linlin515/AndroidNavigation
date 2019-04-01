@@ -3,9 +3,6 @@ package com.navigation.statusbar;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +13,9 @@ import android.widget.TextView;
 import com.navigation.BaseFragment;
 import com.navigation.R;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import me.listenzz.navigation.AwesomeToolbar;
 import me.listenzz.navigation.BarStyle;
 

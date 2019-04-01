@@ -2,11 +2,12 @@ package me.listenzz.navigation;
 
 import android.content.Context;
 import android.graphics.Rect;
-import android.support.annotation.NonNull;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
+
+import androidx.annotation.NonNull;
 
 public class DialogFrameLayout extends FrameLayout {
 

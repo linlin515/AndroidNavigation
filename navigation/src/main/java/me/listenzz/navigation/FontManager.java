@@ -9,11 +9,12 @@ package me.listenzz.navigation;
 
 import android.content.res.AssetManager;
 import android.graphics.Typeface;
-import android.support.annotation.Nullable;
 import android.util.SparseArray;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import androidx.annotation.Nullable;
 
 
 /**

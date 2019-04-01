@@ -1,6 +1,6 @@
 package me.listenzz.navigation;
 
-import android.support.annotation.AnimRes;
+import androidx.annotation.AnimRes;
 
 /**
  * Created by Listen on 2017/11/20.

@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-//apply plugin: 'com.novoda.bintray-release'
+apply plugin: 'com.novoda.bintray-release'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -9,7 +9,7 @@ android {
         minSdkVersion 16
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
-        versionName "2.4.0"
+        versionName "3.0.0"
     }
 
     buildTypes {
@@ -26,11 +26,11 @@ dependencies {
     api 'com.ashokvarma.android:bottom-navigation-bar:2.1.0'
 }
 
-//publish {
-//    userOrg = 'listenzz'
-//    groupId = 'me.listenzz'
-//    artifactId = 'navigation'
-//    publishVersion = '2.4.0'
-//    desc = 'A library managing nested Fragment, StatusBar, Toolbar for Android.'
-//    website = 'https://github.com/listenzz/AndroidNavigation'
-//}
+publish {
+    userOrg = 'listenzz'
+    groupId = 'me.listenzz'
+    artifactId = 'navigation'
+    publishVersion = '3.0.0'
+    desc = 'A library managing nested Fragment, StatusBar, Toolbar for Android.'
+    website = 'https://github.com/listenzz/AndroidNavigation'
+}

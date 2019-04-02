@@ -19,6 +19,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.fragment.app.InternalFragment;
+
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -94,7 +95,7 @@ public abstract class AwesomeFragment extends InternalFragment {
         requireFragmentManager().unregisterFragmentLifecycleCallbacks(fragmentLifecycleCallbacks);
     }
 
-    FragmentManager.FragmentLifecycleCallbacks fragmentLifecycleCallbacks = new FragmentManager.FragmentLifecycleCallbacks() {
+    private FragmentManager.FragmentLifecycleCallbacks fragmentLifecycleCallbacks = new FragmentManager.FragmentLifecycleCallbacks() {
         @Override
         public void onFragmentDestroyed(@NonNull FragmentManager fm, @NonNull Fragment f) {
             if (fm == f.getFragmentManager() && getTargetFragment() == f) {
@@ -151,7 +152,7 @@ public abstract class AwesomeFragment extends InternalFragment {
 
     }
 
-    boolean callSuperOnViewCreated;
+    private boolean callSuperOnViewCreated;
 
     @Override
     @CallSuper
@@ -968,18 +969,22 @@ public abstract class AwesomeFragment extends InternalFragment {
         if (window != null) {
             window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         }
-        getDialog().setOnKeyListener(new DialogInterface.OnKeyListener() {
-            @Override
-            public boolean onKey(DialogInterface dialogInterface, int keyCode, KeyEvent event) {
-                if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
-                    if (!dispatchBackPressed() && isCancelable()) {
-                        dismissDialog();
+
+        Dialog dialog = getDialog();
+        if (dialog != null) {
+            dialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
+                @Override
+                public boolean onKey(DialogInterface dialogInterface, int keyCode, KeyEvent event) {
+                    if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
+                        if (!dispatchBackPressed() && isCancelable()) {
+                            dismissDialog();
+                        }
+                        return true;
                     }
-                    return true;
+                    return false;
                 }
-                return false;
-            }
-        });
+            });
+        }
     }
 
     /**
@@ -1005,8 +1010,8 @@ public abstract class AwesomeFragment extends InternalFragment {
     }
 
     @Override
-    protected void dismissInternal(boolean allowStateLoss) {
-        super.dismissInternal(allowStateLoss);
+    protected void dismissInternal(boolean allowStateLoss, boolean fromOnDismiss) {
+        super.dismissInternal(allowStateLoss, fromOnDismiss);
         Fragment target = getTargetFragment();
         if (target instanceof AwesomeFragment && target.isAdded()) {
             FragmentHelper.executePendingTransactionsSafe(requireFragmentManager());
@@ -1047,7 +1052,7 @@ public abstract class AwesomeFragment extends InternalFragment {
      */
     @Deprecated
     @Override
-    public void show(FragmentManager manager, String tag) {
+    public void show(@NonNull FragmentManager manager, String tag) {
         super.show(manager, tag);
     }
 
@@ -1056,7 +1061,7 @@ public abstract class AwesomeFragment extends InternalFragment {
      */
     @Deprecated
     @Override
-    public int show(FragmentTransaction transaction, String tag) {
+    public int show(@NonNull FragmentTransaction transaction, String tag) {
         return super.show(transaction, tag);
     }
 
@@ -1238,7 +1243,7 @@ public abstract class AwesomeFragment extends InternalFragment {
         return true;
     }
 
-    void handleHideBottomBarWhenPushed(int transit, boolean enter, PresentAnimation animation) {
+    private void handleHideBottomBarWhenPushed(int transit, boolean enter, PresentAnimation animation) {
         // handle hidesBottomBarWhenPushed
         Fragment parent = getParentFragment();
         if (parent instanceof NavigationFragment) {

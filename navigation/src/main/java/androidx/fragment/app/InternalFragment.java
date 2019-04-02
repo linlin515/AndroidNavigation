@@ -7,7 +7,8 @@ public class InternalFragment extends DialogFragment {
     }
 
     @Override
-    protected void dismissInternal(boolean allowStateLoss) {
-        super.dismissInternal(allowStateLoss);
+    protected void dismissInternal(boolean allowStateLoss, boolean fromOnDismiss) {
+        super.dismissInternal(allowStateLoss, fromOnDismiss);
     }
+
 }
